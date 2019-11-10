@@ -7,56 +7,24 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/osipov/deploy/services/GenreServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/osipov/deploy/services/GenreServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ru/osipov/deploy/web/GenreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ru/osipov/deploy/web/GenreController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/osipov/deploy/web/GenreControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/ru/osipov/deploy/web/GenreControllerTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/jacoco/test.exec" beforeDir="false" afterPath="$PROJECT_DIR$/build/jacoco/test.exec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/jacoco-sessions.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/jacoco-sessions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.configuration/GenreInstance.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.configuration/GenreInstance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.configuration/GenreInstance.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.configuration/GenreInstance.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.configuration/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.configuration/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.configuration/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.configuration/index.source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.entities/Genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.entities/Genre.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.entities/Genre.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.entities/Genre.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.entities/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.entities/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.entities/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.entities/index.source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.models/CreateGenreR.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.models/CreateGenreR.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.models/CreateGenreR.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.models/CreateGenreR.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.models/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.models/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.models/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.models/index.source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.services/GenreServiceImpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.services/GenreServiceImpl.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.services/GenreServiceImpl.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.services/GenreServiceImpl.java.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.services/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.services/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.services/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.services/index.source.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.web/GenreController.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.web/GenreController.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.web/GenreController.java.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.web/GenreController.java.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.web/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.web/index.source.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/html/ru.osipov.deploy.web/index.source.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/jacocoTestReport.csv" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/jacocoTestReport.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/jacoco/test/jacocoTestReport.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/jacoco/test/jacocoTestReport.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/ru.osipov.deploy.DeployTest.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/ru.osipov.deploy.web.GenreControllerTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/classes/ru.osipov.deploy.web.GenreControllerTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/ru.osipov.deploy.web.reps.GenreRepoTest.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/ru.osipov.deploy.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/ru.osipov.deploy.web.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/packages/ru.osipov.deploy.web.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/ru.osipov.deploy.web.reps.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/META-INF/build-info.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/META-INF/build-info.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/TEST-ru.osipov.deploy.DeployTest.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/test-results/test/TEST-ru.osipov.deploy.web.GenreControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/TEST-ru.osipov.deploy.web.GenreControllerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/TEST-ru.osipov.deploy.web.reps.GenreRepoTest.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/osipov/deploy/services/GenreServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/osipov/deploy/services/GenreServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/osipov/deploy/web/GenreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/osipov/deploy/web/GenreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/osipov/deploy/web/GenreControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/osipov/deploy/web/GenreControllerTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -120,13 +88,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.GenreControllerTest.testUpdateName">
-    <configuration name="DeployTest.testStarted" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.GenreControllerTest.testAll">
+    <configuration name="GenreControllerTest.testAll" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.DeployTest.testStarted&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.web.GenreControllerTest.testAll&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -141,12 +109,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="GenreControllerTest.testUpdateName" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="GenreControllerTest.testByName" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.web.GenreControllerTest.testUpdateName&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.web.GenreControllerTest.testByName&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -161,12 +129,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="GenreRepoTest.NoNulls" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="GenreControllerTest.testByRemarks" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.web.reps.GenreRepoTest.NoNulls&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.web.GenreControllerTest.testByRemarks&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -181,12 +149,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="GenreRepoTest.getExistingByName" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="GenreControllerTest.testCreate" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.web.reps.GenreRepoTest.getExistingByName&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.web.GenreControllerTest.testCreate&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -201,12 +169,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="GenreRepoTest.injectedComponentsAreNotNull" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="GenreControllerTest.testDelete" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.web.reps.GenreRepoTest.injectedComponentsAreNotNull&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ru.osipov.deploy.web.GenreControllerTest.testDelete&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -223,11 +191,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.GenreControllerTest.testUpdateName" />
-        <item itemvalue="Gradle.DeployTest.testStarted" />
-        <item itemvalue="Gradle.GenreRepoTest.injectedComponentsAreNotNull" />
-        <item itemvalue="Gradle.GenreRepoTest.getExistingByName" />
-        <item itemvalue="Gradle.GenreRepoTest.NoNulls" />
+        <item itemvalue="Gradle.GenreControllerTest.testAll" />
+        <item itemvalue="Gradle.GenreControllerTest.testByName" />
+        <item itemvalue="Gradle.GenreControllerTest.testByRemarks" />
+        <item itemvalue="Gradle.GenreControllerTest.testCreate" />
+        <item itemvalue="Gradle.GenreControllerTest.testDelete" />
       </list>
     </recent_temporary>
   </component>

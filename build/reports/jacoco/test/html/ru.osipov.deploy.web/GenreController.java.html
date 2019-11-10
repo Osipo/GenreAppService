@@ -34,11 +34,11 @@ public class GenreController {
     //If no any name was specified -&gt; getAll() [GET: /v1/genres, /v1/genres/]
     @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE, path={&quot;/{name}&quot;,&quot;&quot;,&quot;/&quot;})
     public List&lt;GenreInfo&gt; getAllByName(@PathVariable(required = false, name= &quot;name&quot;) String name){
-<span class="nc" id="L37">        logger.info(&quot;/v1/genres&quot;);</span>
+<span class="fc" id="L37">        logger.info(&quot;/v1/genres&quot;);</span>
         List&lt;GenreInfo&gt; genres;
-<span class="nc bnc" id="L39" title="All 4 branches missed.">        if(name == null || name.equals(&quot;&quot;)) {</span>
-<span class="nc" id="L40">            logger.info(&quot;Name was not specified. Get all.&quot;);</span>
-<span class="nc" id="L41">            genres = gService.getAllGenres();</span>
+<span class="pc bpc" id="L39" title="3 of 4 branches missed.">        if(name == null || name.equals(&quot;&quot;)) {</span>
+<span class="fc" id="L40">            logger.info(&quot;Name was not specified. Get all.&quot;);</span>
+<span class="fc" id="L41">            genres = gService.getAllGenres();</span>
         }
         else {
 <span class="nc" id="L44">            logger.info(&quot;/v1/genres/'{}'&quot;,name);</span>
@@ -46,8 +46,8 @@ public class GenreController {
 <span class="nc" id="L46">            genres = new ArrayList&lt;GenreInfo&gt;();</span>
 <span class="nc" id="L47">            genres.add(gService.getByName(name));</span>
         }
-<span class="nc" id="L49">        logger.info(&quot;Count: &quot;+genres.size());</span>
-<span class="nc" id="L50">        return genres;</span>
+<span class="fc" id="L49">        logger.info(&quot;Count: &quot;+genres.size());</span>
+<span class="fc" id="L50">        return genres;</span>
     }
 
     //GET: /v1/genres/remarks?r='...'
@@ -78,29 +78,29 @@ public class GenreController {
     //POST: /v1/genres/update/{genre_name}?newName='...'
     @PostMapping(produces = APPLICATION_JSON_UTF8_VALUE,path={&quot;/update/{genre}&quot;})
     public ResponseEntity updateGenreName(@PathVariable(name = &quot;genre&quot;) String genre, @RequestParam(name = &quot;newName&quot;) String name){
-<span class="fc bfc" id="L81" title="All 2 branches covered.">        if(name.equals(&quot;&quot;)){</span>
-<span class="fc" id="L82">            logger.info(&quot;Empty name = '{}'&quot;,name);</span>
-<span class="fc" id="L83">            return ResponseEntity.badRequest().build();</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if(name.equals(&quot;&quot;)){</span>
+<span class="nc" id="L82">            logger.info(&quot;Empty name = '{}'&quot;,name);</span>
+<span class="nc" id="L83">            return ResponseEntity.badRequest().build();</span>
         }
-<span class="fc" id="L85">        GenreInfo g = null;</span>
-<span class="fc" id="L86">        logger.info(&quot;/v1/genres/update/'{}'&quot;,genre);</span>
+<span class="nc" id="L85">        GenreInfo g = null;</span>
+<span class="nc" id="L86">        logger.info(&quot;/v1/genres/update/'{}'&quot;,genre);</span>
         try {
-<span class="fc" id="L88">            g = gService.updateGenre(genre, name);</span>
+<span class="nc" id="L88">            g = gService.updateGenre(genre, name);</span>
         }
-<span class="fc" id="L90">        catch(IllegalStateException e){</span>
-<span class="fc" id="L91">            String v = e.getMessage();</span>
-<span class="fc bfc" id="L92" title="All 2 branches covered.">            if(v.contains(&quot;not exist&quot;)){</span>
-<span class="fc" id="L93">                return ResponseEntity.notFound().build();</span>
+<span class="nc" id="L90">        catch(IllegalStateException e){</span>
+<span class="nc" id="L91">            String v = e.getMessage();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            if(v.contains(&quot;not exist&quot;)){</span>
+<span class="nc" id="L93">                return ResponseEntity.notFound().build();</span>
             }
             else{
-<span class="fc" id="L96">                return ResponseEntity.badRequest().build();</span>
+<span class="nc" id="L96">                return ResponseEntity.badRequest().build();</span>
             }
 //            logger.info(&quot;Return json object with error message...&quot;);
 //            JsonObject obj = new JsonObject();
 //            obj.addProperty(&quot;error&quot;,e.getMessage());
             //return ResponseEntity.ok(obj.toString());
-<span class="fc" id="L102">        }</span>
-<span class="fc" id="L103">        return ResponseEntity.ok(g);</span>
+<span class="nc" id="L102">        }</span>
+<span class="nc" id="L103">        return ResponseEntity.ok(g);</span>
     }
 
     //POST: /v1/genres/create
