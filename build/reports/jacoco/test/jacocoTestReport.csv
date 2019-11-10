@@ -1,5 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 GenreApp,ru.osipov.deploy.services,GenreServiceImpl,223,0,8,0,51,0,14,0,10,0
+GenreApp,ru.osipov.deploy.web,HomeController,13,0,0,0,4,0,3,0,3,0
 GenreApp,ru.osipov.deploy.web,GenreController,151,30,17,1,39,10,13,3,4,3
 GenreApp,ru.osipov.deploy.models,GenreInfo,78,21,16,0,7,8,11,4,3,4
 GenreApp,ru.osipov.deploy.models,CreateGenreR,126,0,22,0,5,0,21,0,10,0
