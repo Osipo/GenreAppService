@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WebConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GenreApp</a> &gt; <a href="index.source.html" class="el_package">ru.osipov.deploy</a> &gt; <span class="el_source">WebConfig.java</span></div><h1>WebConfig.java</h1><pre class="source lang-java linenums">package ru.osipov.deploy;
+
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Description;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+
+@Configuration
+@EnableWebMvc
+<span class="fc" id="L20">public class WebConfig implements WebMvcConfigurer {</span>
+
+    @Override
+    public Validator getValidator() {
+<span class="fc" id="L24">        return validator();</span>
+    }
+
+    @Bean
+    @Description(&quot;Thymeleaf template resolver serving HTML 5&quot;)
+    public ClassLoaderTemplateResolver templateResolver() {
+<span class="fc" id="L30">        var templateResolver = new ClassLoaderTemplateResolver();</span>
+<span class="fc" id="L31">        templateResolver.setPrefix(&quot;templates/&quot;);</span>
+<span class="fc" id="L32">        templateResolver.setCacheable(false);</span>
+<span class="fc" id="L33">        templateResolver.setSuffix(&quot;.html&quot;);</span>
+<span class="fc" id="L34">        templateResolver.setTemplateMode(&quot;HTML5&quot;);</span>
+<span class="fc" id="L35">        templateResolver.setCharacterEncoding(&quot;UTF-8&quot;);</span>
+<span class="fc" id="L36">        templateResolver.setCheckExistence(true);</span>
+<span class="fc" id="L37">        return templateResolver;</span>
+    }
+
+    @Bean
+    @Description(&quot;Thymeleaf template engine with Spring integration&quot;)
+    public SpringTemplateEngine templateEngine() {
+
+<span class="fc" id="L44">        var templateEngine = new SpringTemplateEngine();</span>
+<span class="fc" id="L45">        templateEngine.setTemplateResolver(templateResolver());</span>
+
+<span class="fc" id="L47">        return templateEngine;</span>
+    }
+
+    @Bean
+    @Description(&quot;Thymeleaf view resolver&quot;)
+    public ViewResolver viewResolver() {
+
+<span class="fc" id="L54">        var viewResolver = new ThymeleafViewResolver();</span>
+
+<span class="fc" id="L56">        viewResolver.setTemplateEngine(templateEngine());</span>
+<span class="fc" id="L57">        viewResolver.setCharacterEncoding(&quot;UTF-8&quot;);</span>
+
+<span class="fc" id="L59">        return viewResolver;</span>
+    }
+
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+
+         // registry.addViewController(&quot;/genres&quot;).setViewName(&quot;/GResult&quot;);
+//        registry.addViewController(&quot;/genres/categories&quot;).setViewName(&quot;/categories&quot;);
+//        registry.addViewController(&quot;/&quot;).setViewName(&quot;/index&quot;);
+//        registry.addViewController(&quot;/genre_result/genres&quot;).setViewName(&quot;/GResult&quot;);
+<span class="fc" id="L70">    }</span>
+
+    @Bean
+    public LocalValidatorFactoryBean validator() {
+
+<span class="fc" id="L75">        LocalValidatorFactoryBean validatorFactoryBean = new LocalValidatorFactoryBean();</span>
+<span class="fc" id="L76">        validatorFactoryBean.setValidationMessageSource(messageSource());</span>
+<span class="fc" id="L77">        return validatorFactoryBean;</span>
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+<span class="fc" id="L82">        final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();</span>
+<span class="fc" id="L83">        messageSource.setDefaultEncoding(&quot;UTF-8&quot;);</span>
+<span class="fc" id="L84">        messageSource.setBasenames(&quot;classpath:ValidationMessages&quot;);</span>
+<span class="fc" id="L85">        return messageSource;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

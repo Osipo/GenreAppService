@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateGenreR.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GenreApp</a> &gt; <a href="index.source.html" class="el_package">ru.osipov.deploy.models</a> &gt; <span class="el_source">CreateGenreR.java</span></div><h1>CreateGenreR.java</h1><pre class="source lang-java linenums">package ru.osipov.deploy.models;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.Accessors;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
+<span class="pc bpc" id="L11" title="15 of 22 branches missed.">@Data</span>
+@Accessors(chain = true)
+<span class="fc" id="L13">@AllArgsConstructor</span>
+<span class="fc" id="L14">@RequiredArgsConstructor</span>
+public class CreateGenreR {
+	@NotEmpty(message = &quot;{field.not.empty}&quot;)
+	@NotBlank(message = &quot;{field.not.blank}&quot;)//on null returns true but notEmpty returns false
+<span class="fc" id="L18">	private String gname;</span>
+
+
+<span class="fc" id="L21">    private String remarks;</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
