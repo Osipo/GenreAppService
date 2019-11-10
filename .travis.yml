@@ -1,0 +1,17 @@
+sudo: false
+language: java
+jdk:
+  - openjdk12
+addons:
+  apt:
+    packages:
+      - dos2unix
+services:
+  - mysql
+before_install:
+ - chmod +x gradlew
+before_script:
+  - ./gradlew clean build
+
+notifications:
+  email: false
