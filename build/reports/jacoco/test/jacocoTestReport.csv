@@ -1,9 +1,9 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-GenreApp,ru.osipov.deploy.services,GenreServiceImpl,213,10,8,0,47,4,12,2,8,2
-GenreApp,ru.osipov.deploy.web,GenreController,0,184,1,15,0,49,1,14,0,7
+GenreApp,ru.osipov.deploy.services,GenreServiceImpl,223,0,8,0,51,0,14,0,10,0
+GenreApp,ru.osipov.deploy.web,GenreController,130,51,14,4,32,17,11,5,4,3
 GenreApp,ru.osipov.deploy.models,GenreInfo,78,21,16,0,7,8,11,4,3,4
-GenreApp,ru.osipov.deploy.models,CreateGenreR,56,70,15,7,0,5,13,8,2,8
-GenreApp,ru.osipov.deploy.configuration,GenreInstance,0,33,0,0,0,9,0,5,0,5
+GenreApp,ru.osipov.deploy.models,CreateGenreR,126,0,22,0,5,0,21,0,10,0
+GenreApp,ru.osipov.deploy.configuration,GenreInstance,33,0,0,0,9,0,5,0,5,0
 GenreApp,ru.osipov.deploy,DeployApp,5,3,0,0,2,1,1,1,1,1
 GenreApp,ru.osipov.deploy,WebConfig,0,81,0,0,0,25,0,8,0,8
-GenreApp,ru.osipov.deploy.entities,Genre,98,11,15,1,11,3,15,3,7,3
+GenreApp,ru.osipov.deploy.entities,Genre,109,0,16,0,14,0,18,0,10,0

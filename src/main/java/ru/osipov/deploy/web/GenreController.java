@@ -88,10 +88,17 @@ public class GenreController {
             g = gService.updateGenre(genre, name);
         }
         catch(IllegalStateException e){
-            logger.info("Return json object with error message...");
-            JsonObject obj = new JsonObject();
-            obj.addProperty("error",e.getMessage());
-            return ResponseEntity.ok(obj.toString());
+            String v = e.getMessage();
+            if(v.contains("not exist")){
+                return ResponseEntity.notFound().build();
+            }
+            else{
+                return ResponseEntity.badRequest().build();
+            }
+//            logger.info("Return json object with error message...");
+//            JsonObject obj = new JsonObject();
+//            obj.addProperty("error",e.getMessage());
+            //return ResponseEntity.ok(obj.toString());
         }
         return ResponseEntity.ok(g);
     }

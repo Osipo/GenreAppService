@@ -23,12 +23,12 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Service
 public class GenreServiceImpl implements GenreService {
     private final GenreRepository gRepository;
-<span class="fc" id="L26">    private static final Logger logger = getLogger(GenreServiceImpl.class);</span>
+<span class="nc" id="L26">    private static final Logger logger = getLogger(GenreServiceImpl.class);</span>
 
     @Autowired
-<span class="fc" id="L29">    public GenreServiceImpl(GenreRepository gr){</span>
-<span class="fc" id="L30">        this.gRepository = gr;</span>
-<span class="fc" id="L31">    }</span>
+<span class="nc" id="L29">    public GenreServiceImpl(GenreRepository gr){</span>
+<span class="nc" id="L30">        this.gRepository = gr;</span>
+<span class="nc" id="L31">    }</span>
 
 
     @Nonnull
@@ -72,7 +72,7 @@ public class GenreServiceImpl implements GenreService {
         }
         else{
 <span class="nc" id="L74">            logger.info(&quot;not found genre with name = '{}'&quot;,oldname);</span>
-<span class="nc" id="L75">            throw new IllegalStateException(&quot;Genre with old name&quot;+oldname+&quot;does not exists.&quot;);</span>
+<span class="nc" id="L75">            throw new IllegalStateException(&quot;Genre with old name&quot;+oldname+&quot;does not exist.&quot;);</span>
         }
     }
 

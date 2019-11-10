@@ -34,20 +34,20 @@ public class GenreController {
     //If no any name was specified -&gt; getAll() [GET: /v1/genres, /v1/genres/]
     @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE, path={&quot;/{name}&quot;,&quot;&quot;,&quot;/&quot;})
     public List&lt;GenreInfo&gt; getAllByName(@PathVariable(required = false, name= &quot;name&quot;) String name){
-<span class="fc" id="L37">        logger.info(&quot;/v1/genres&quot;);</span>
+<span class="nc" id="L37">        logger.info(&quot;/v1/genres&quot;);</span>
         List&lt;GenreInfo&gt; genres;
-<span class="pc bpc" id="L39" title="1 of 4 branches missed.">        if(name == null || name.equals(&quot;&quot;)) {</span>
-<span class="fc" id="L40">            logger.info(&quot;Name was not specified. Get all.&quot;);</span>
-<span class="fc" id="L41">            genres = gService.getAllGenres();</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">        if(name == null || name.equals(&quot;&quot;)) {</span>
+<span class="nc" id="L40">            logger.info(&quot;Name was not specified. Get all.&quot;);</span>
+<span class="nc" id="L41">            genres = gService.getAllGenres();</span>
         }
         else {
-<span class="fc" id="L44">            logger.info(&quot;/v1/genres/'{}'&quot;,name);</span>
-<span class="fc" id="L45">            logger.info(&quot;Name is '{}'&quot;,name);</span>
-<span class="fc" id="L46">            genres = new ArrayList&lt;GenreInfo&gt;();</span>
-<span class="fc" id="L47">            genres.add(gService.getByName(name));</span>
+<span class="nc" id="L44">            logger.info(&quot;/v1/genres/'{}'&quot;,name);</span>
+<span class="nc" id="L45">            logger.info(&quot;Name is '{}'&quot;,name);</span>
+<span class="nc" id="L46">            genres = new ArrayList&lt;GenreInfo&gt;();</span>
+<span class="nc" id="L47">            genres.add(gService.getByName(name));</span>
         }
-<span class="fc" id="L49">        logger.info(&quot;Count: &quot;+genres.size());</span>
-<span class="fc" id="L50">        return genres;</span>
+<span class="nc" id="L49">        logger.info(&quot;Count: &quot;+genres.size());</span>
+<span class="nc" id="L50">        return genres;</span>
     }
 
     //GET: /v1/genres/remarks?r='...'
@@ -57,21 +57,21 @@ public class GenreController {
     @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE, path = &quot;/remarks&quot;)
     public List&lt;GenreInfo&gt; getAllByRemarks(@RequestParam(required = false, name=&quot;r&quot;) String remarks, @RequestParam(required = false, name = &quot;all&quot;, defaultValue = &quot;false&quot;) Boolean all){
         List&lt;GenreInfo&gt; genres;
-<span class="fc" id="L60">        logger.info(&quot;/v1/genres/remarks&quot;);</span>
-<span class="fc bfc" id="L61" title="All 6 branches covered.">        if( (remarks == null || remarks.equals(&quot;&quot;)) &amp;&amp; all){</span>
-<span class="fc" id="L62">            logger.info(&quot;Remarks is null but fetch all cause p_all = '{}' &quot;,all);</span>
-<span class="fc" id="L63">            genres = gService.getAllGenres();</span>
+<span class="nc" id="L60">        logger.info(&quot;/v1/genres/remarks&quot;);</span>
+<span class="nc bnc" id="L61" title="All 6 branches missed.">        if( (remarks == null || remarks.equals(&quot;&quot;)) &amp;&amp; all){</span>
+<span class="nc" id="L62">            logger.info(&quot;Remarks is null but fetch all cause p_all = '{}' &quot;,all);</span>
+<span class="nc" id="L63">            genres = gService.getAllGenres();</span>
         }
-<span class="fc bfc" id="L65" title="All 4 branches covered.">        else if(remarks == null || remarks.equals(&quot;&quot;)){</span>
-<span class="fc" id="L66">            logger.info(&quot;Remarks is null. Fetch by remarks cause p_all = '{}'&quot;,all);</span>
-<span class="fc" id="L67">            genres = gService.getByRemarks(null);</span>
+<span class="nc bnc" id="L65" title="All 4 branches missed.">        else if(remarks == null || remarks.equals(&quot;&quot;)){</span>
+<span class="nc" id="L66">            logger.info(&quot;Remarks is null. Fetch by remarks cause p_all = '{}'&quot;,all);</span>
+<span class="nc" id="L67">            genres = gService.getByRemarks(null);</span>
         }
         else{
-<span class="fc" id="L70">            logger.info(&quot;Remarks = '{}'&quot;,remarks);</span>
-<span class="fc" id="L71">            genres = gService.getByRemarks(remarks);</span>
+<span class="nc" id="L70">            logger.info(&quot;Remarks = '{}'&quot;,remarks);</span>
+<span class="nc" id="L71">            genres = gService.getByRemarks(remarks);</span>
         }
-<span class="fc" id="L73">        logger.info(&quot;Count: &quot;+genres.size());</span>
-<span class="fc" id="L74">        return genres;</span>
+<span class="nc" id="L73">        logger.info(&quot;Count: &quot;+genres.size());</span>
+<span class="nc" id="L74">        return genres;</span>
     }
 
 
@@ -88,38 +88,45 @@ public class GenreController {
 <span class="fc" id="L88">            g = gService.updateGenre(genre, name);</span>
         }
 <span class="fc" id="L90">        catch(IllegalStateException e){</span>
-<span class="fc" id="L91">            logger.info(&quot;Return json object with error message...&quot;);</span>
-<span class="fc" id="L92">            JsonObject obj = new JsonObject();</span>
-<span class="fc" id="L93">            obj.addProperty(&quot;error&quot;,e.getMessage());</span>
-<span class="fc" id="L94">            return ResponseEntity.ok(obj.toString());</span>
-<span class="fc" id="L95">        }</span>
-<span class="fc" id="L96">        return ResponseEntity.ok(g);</span>
+<span class="fc" id="L91">            String v = e.getMessage();</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            if(v.contains(&quot;not exist&quot;)){</span>
+<span class="fc" id="L93">                return ResponseEntity.notFound().build();</span>
+            }
+            else{
+<span class="fc" id="L96">                return ResponseEntity.badRequest().build();</span>
+            }
+//            logger.info(&quot;Return json object with error message...&quot;);
+//            JsonObject obj = new JsonObject();
+//            obj.addProperty(&quot;error&quot;,e.getMessage());
+            //return ResponseEntity.ok(obj.toString());
+<span class="fc" id="L102">        }</span>
+<span class="fc" id="L103">        return ResponseEntity.ok(g);</span>
     }
 
     //POST: /v1/genres/create
     @PostMapping(consumes = APPLICATION_JSON_UTF8_VALUE, produces = APPLICATION_JSON_UTF8_VALUE, path = &quot;/create&quot;)
     public ResponseEntity createGenre(@Valid @RequestBody CreateGenreR request) {
-<span class="fc" id="L102">        logger.info(&quot;/v1/genres/create&quot;);</span>
-<span class="fc" id="L103">        final URI location = gService.createGenre(request);</span>
-<span class="fc" id="L104">        return ResponseEntity.created(location).build();</span>
+<span class="nc" id="L109">        logger.info(&quot;/v1/genres/create&quot;);</span>
+<span class="nc" id="L110">        final URI location = gService.createGenre(request);</span>
+<span class="nc" id="L111">        return ResponseEntity.created(location).build();</span>
     }
 
     //POST: /v1/genres/delete/{genre_name}
     @PostMapping(produces = APPLICATION_JSON_UTF8_VALUE, path={&quot;/delete/{genre}&quot;,&quot;/delete/&quot;})
     public ResponseEntity deleteGenre(@PathVariable(name = &quot;genre&quot;)String genre){
-<span class="fc" id="L110">        logger.info(&quot;/v1/genres/delete/'{}'&quot;,genre);</span>
-<span class="fc" id="L111">        GenreInfo g = null;</span>
+<span class="nc" id="L117">        logger.info(&quot;/v1/genres/delete/'{}'&quot;,genre);</span>
+<span class="nc" id="L118">        GenreInfo g = null;</span>
         try{
-<span class="fc" id="L113">            g = gService.deleteGenre(genre);</span>
+<span class="nc" id="L120">            g = gService.deleteGenre(genre);</span>
         }
-<span class="fc" id="L115">        catch (IllegalStateException e){</span>
-<span class="fc" id="L116">            logger.info(&quot;Return not found 404&quot;);</span>
+<span class="nc" id="L122">        catch (IllegalStateException e){</span>
+<span class="nc" id="L123">            logger.info(&quot;Return not found 404&quot;);</span>
             //JsonObject obj = new JsonObject();
             //obj.addProperty(&quot;error&quot;,e.getMessage());
             //return ResponseEntity.ok(obj.toString());
-<span class="fc" id="L120">            return ResponseEntity.notFound().build();</span>
-<span class="fc" id="L121">        }</span>
-<span class="fc" id="L122">        return ResponseEntity.ok(g);</span>
+<span class="nc" id="L127">            return ResponseEntity.notFound().build();</span>
+<span class="nc" id="L128">        }</span>
+<span class="nc" id="L129">        return ResponseEntity.ok(g);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

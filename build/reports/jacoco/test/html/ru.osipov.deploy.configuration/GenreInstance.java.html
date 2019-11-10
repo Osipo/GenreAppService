@@ -24,36 +24,36 @@ import javax.sql.DataSource;
         entityManagerFactoryRef = &quot;genresEntityManagerFactory&quot;,
         transactionManagerRef= &quot;genresTransactionManager&quot;
 )
-<span class="fc" id="L27">public class GenreInstance {</span>
+<span class="nc" id="L27">public class GenreInstance {</span>
     @Bean
     @Primary
     @ConfigurationProperties(&quot;app.datasource.genres&quot;)
     public DataSourceProperties genresDataSourceProperties() {
-<span class="fc" id="L32">        return new DataSourceProperties();</span>
+<span class="nc" id="L32">        return new DataSourceProperties();</span>
     }
     @Bean
     @Primary
     @ConfigurationProperties(&quot;app.datasource.genres.configuration&quot;)
     public DataSource genresDataSource() {
-<span class="fc" id="L38">        return genresDataSourceProperties().initializeDataSourceBuilder()</span>
-<span class="fc" id="L39">                .type(HikariDataSource.class).build();</span>
+<span class="nc" id="L38">        return genresDataSourceProperties().initializeDataSourceBuilder()</span>
+<span class="nc" id="L39">                .type(HikariDataSource.class).build();</span>
     }
 
 
     @Primary
     @Bean(name = &quot;genresEntityManagerFactory&quot;)
     public LocalContainerEntityManagerFactoryBean genresEntityManagerFactory(EntityManagerFactoryBuilder builder) {
-<span class="fc" id="L46">        return builder</span>
-<span class="fc" id="L47">                .dataSource(genresDataSource())</span>
-<span class="fc" id="L48">                .packages(Genre.class)</span>
-<span class="fc" id="L49">                .build();</span>
+<span class="nc" id="L46">        return builder</span>
+<span class="nc" id="L47">                .dataSource(genresDataSource())</span>
+<span class="nc" id="L48">                .packages(Genre.class)</span>
+<span class="nc" id="L49">                .build();</span>
     }
 
     @Primary
     @Bean
     public PlatformTransactionManager genresTransactionManager(
             final @Qualifier(&quot;genresEntityManagerFactory&quot;) LocalContainerEntityManagerFactoryBean genresEntityManagerFactory) {
-<span class="fc" id="L56">        return new JpaTransactionManager(genresEntityManagerFactory.getObject());</span>
+<span class="nc" id="L56">        return new JpaTransactionManager(genresEntityManagerFactory.getObject());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

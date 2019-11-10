@@ -72,7 +72,7 @@ public class GenreServiceImpl implements GenreService {
         }
         else{
             logger.info("not found genre with name = '{}'",oldname);
-            throw new IllegalStateException("Genre with old name"+oldname+"does not exists.");
+            throw new IllegalStateException("Genre with old name"+oldname+"does not exist.");
         }
     }
 

@@ -188,7 +188,7 @@ public class GenreControllerTest {
         logger.info("testUpdateName");
         GenreInfo g = new GenreInfo(11L,"Scary",PARAMS1[1]);
         doReturn(g).when(gs).updateGenre("Horror","Scary");
-        doThrow(new IllegalStateException("NOT FOUND: "+PARAMS3[0])).when(gs).updateGenre(PARAMS3[0],"Action");
+        doThrow(new IllegalStateException("not exist: "+PARAMS3[0])).when(gs).updateGenre(PARAMS3[0],"Action");
         doThrow(new IllegalStateException("Already have this name: "+PARAMS1[0])).when(gs).updateGenre(PARAMS1[0],PARAMS1[0]);
 
         //successful update
@@ -214,17 +214,11 @@ public class GenreControllerTest {
         //Bad operations (exceptions)
         //Update  genre that does not exist.
         mockMvc.perform(post("/v1/genres/update/"+PARAMS3[0]+"?newName=Action").accept(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$").exists())
-                .andExpect(jsonPath("$.error").value("NOT FOUND: "+PARAMS3[0]));
+                .andExpect(status().isNotFound());
 
         //Update genre wtih non-unique name. (Names must be UNIQUE!!!)
         mockMvc.perform(post("/v1/genres/update/"+PARAMS1[0]+"?newName="+PARAMS1[0]).accept(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$").exists())
-                .andExpect(jsonPath("$.error").value("Already have this name: "+PARAMS1[0]));
+                .andExpect(status().isBadRequest());
     }
 
     @Test
