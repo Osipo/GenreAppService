@@ -30,10 +30,28 @@ public class GenreController {
         this.gService = gs;
     }
 
-    //GET: /v1/genres/{genre_name}
+
+    //GET: /v1/genres/{genre_id}
+    @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE, path={"/{id}"})
+    public ResponseEntity getById(@PathVariable(name = "id", required = true) Long id){
+        logger.info("getById");
+        logger.info("/v1/genres/'{}'",id);
+        GenreInfo g = null;
+        try{
+            g = gService.getGenreById(id);
+        }
+        catch (IllegalStateException e){
+            logger.info("not found. 404");
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+        return ResponseEntity.ok(g);
+    }
+
+    //GET: /v1/genres?name='...'
     //If no any name was specified -> getAll() [GET: /v1/genres, /v1/genres/]
-    @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE, path={"/{name}","","/"})
-    public List<GenreInfo> getAllByName(@PathVariable(required = false, name= "name") String name){
+    @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE, path={})
+    public List<GenreInfo> getAllByName(@RequestParam(required = false, name= "name") String name){
+        logger.info("getAllByName");
         logger.info("/v1/genres");
         List<GenreInfo> genres;
         if(name == null || name.equals("")) {
@@ -41,7 +59,7 @@ public class GenreController {
             genres = gService.getAllGenres();
         }
         else {
-            logger.info("/v1/genres/'{}'",name);
+            logger.info("/v1/genres?name='{}'",name);
             logger.info("Name is '{}'",name);
             genres = new ArrayList<GenreInfo>();
             genres.add(gService.getByName(name));
@@ -80,7 +98,7 @@ public class GenreController {
     public ResponseEntity updateGenreName(@PathVariable(name = "genre") String genre, @RequestParam(name = "newName") String name){
         if(name.equals("")){
             logger.info("Empty name = '{}'",name);
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(400).body("Parameter name was not specified.");
         }
         GenreInfo g = null;
         logger.info("/v1/genres/update/'{}'",genre);
@@ -90,15 +108,30 @@ public class GenreController {
         catch(IllegalStateException e){
             String v = e.getMessage();
             if(v.contains("not exist")){
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(404).body(e.getMessage());
             }
             else{
-                return ResponseEntity.badRequest().build();
+                return ResponseEntity.status(400).body(e.getMessage());
             }
 //            logger.info("Return json object with error message...");
 //            JsonObject obj = new JsonObject();
 //            obj.addProperty("error",e.getMessage());
             //return ResponseEntity.ok(obj.toString());
+        }
+        return ResponseEntity.ok(g);
+    }
+
+    //PATCH: /V1/genres/{genre_id}
+    //If no any genre_id was specified -> badRequest()
+    //If no any data was in body -> badRequest()
+    @PatchMapping(consumes = APPLICATION_JSON_UTF8_VALUE,produces = APPLICATION_JSON_UTF8_VALUE,path = {"/{id}"})
+    public ResponseEntity updateGenre(@PathVariable(name = "id", required = true) Long id, @RequestBody @Valid CreateGenreR data){
+        GenreInfo g;
+        try{
+            g = gService.updateGenre(id,data);
+        }
+        catch (IllegalStateException e){
+            return ResponseEntity.status(404).body(e.getMessage());
         }
         return ResponseEntity.ok(g);
     }
@@ -113,18 +146,18 @@ public class GenreController {
 
     //POST: /v1/genres/delete/{genre_name}
     @PostMapping(produces = APPLICATION_JSON_UTF8_VALUE, path={"/delete/{genre}","/delete/"})
-    public ResponseEntity deleteGenre(@PathVariable(name = "genre")String genre){
-        logger.info("/v1/genres/delete/'{}'",genre);
+    public ResponseEntity deleteGenre(@PathVariable(name = "genre")Long id){
+        logger.info("/v1/genres/delete/'{}'",id);
         GenreInfo g = null;
         try{
-            g = gService.deleteGenre(genre);
+            g = gService.deleteGenre(id);
         }
         catch (IllegalStateException e){
             logger.info("Return not found 404");
             //JsonObject obj = new JsonObject();
             //obj.addProperty("error",e.getMessage());
             //return ResponseEntity.ok(obj.toString());
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(404).body(e.getMessage());
         }
         return ResponseEntity.ok(g);
     }

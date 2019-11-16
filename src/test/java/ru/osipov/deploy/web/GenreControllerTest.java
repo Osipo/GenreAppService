@@ -25,8 +25,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ru.osipov.deploy.TestParams.*;
 
@@ -69,13 +68,43 @@ public class GenreControllerTest {
     }
 
     @Test
+    void testById() throws Exception {
+        logger.info("testById");
+        final GenreInfo g = new GenreInfo(23L,"Horror","Scary story.");
+        doReturn(g).when(gs).getGenreById(23L);
+        doThrow(new IllegalStateException("Genre not found.")).when(gs).getGenreById(0L);
+        final List<GenreInfo> emt = new ArrayList<>();
+        when(gs.getAllGenres()).thenReturn(emt);
+        mockMvc.perform(get("/v1/genres/23").accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$").exists())
+                .andExpect(jsonPath("$.id").value(23L))
+                .andExpect(jsonPath("$.name").value("Horror"))
+                .andExpect(jsonPath("$.remarks").value("Scary story."));
+
+        mockMvc.perform(get("/v1/genres/0").accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isNotFound());
+        mockMvc.perform(get("/v1/genres/").accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$").exists())
+                .andExpect(jsonPath("$").isEmpty());
+        mockMvc.perform(get("/v1/genres").accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$").exists())
+                .andExpect(jsonPath("$").isEmpty());
+    }
+
+    @Test
     void testByName() throws Exception {
         logger.info("testByName");
         final List<GenreInfo> emt = new ArrayList<>();
         final GenreInfo g = new GenreInfo(11L,PARAMS1[0],PARAMS1[1]);
         when(gs.getAllGenres()).thenReturn(emt);
         when(gs.getByName(PARAMS1[0])).thenReturn(g);
-        mockMvc.perform(get("/v1/genres/"+PARAMS1[0])
+        mockMvc.perform(get("/v1/genres?name="+PARAMS1[0])
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -214,13 +243,37 @@ public class GenreControllerTest {
     }
 
     @Test
+    void testUpdate() throws Exception{
+        logger.info("testUpdate");
+        CreateGenreR badreq = new CreateGenreR("","");
+        CreateGenreR req = new CreateGenreR("horror",null);
+        GenreInfo g = new GenreInfo(1L,"scary","some");
+        when(gs.updateGenre(1l,req)).thenReturn(g);
+        doThrow(new IllegalStateException("not found.")).when(gs).updateGenre(-1l,req);
+        mockMvc.perform(patch("/v1/genres/1").accept(MediaType.APPLICATION_JSON_UTF8).contentType(MediaType.APPLICATION_JSON_UTF8).content(gson.toJson(req)))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(jsonPath("$").exists())
+            .andExpect(jsonPath("$.id").value(1L))
+            .andExpect(jsonPath("$.name").value("scary"))
+            .andExpect(jsonPath("$.remarks").value("some"));
+
+        mockMvc.perform(patch("/v1/genres/1").accept(MediaType.APPLICATION_JSON_UTF8)
+                .contentType(MediaType.APPLICATION_JSON_UTF8).content(gson.toJson(badreq)))
+            .andExpect(status().isBadRequest());
+        mockMvc.perform(patch("/v1/genres/-1").accept(MediaType.APPLICATION_JSON_UTF8)
+                .contentType(MediaType.APPLICATION_JSON_UTF8).content(gson.toJson(req)))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void testDelete() throws Exception{
         logger.info("testDelete");
         GenreInfo g = new GenreInfo(11L,"Scary",PARAMS1[1]);
-        doReturn(g).when(gs).deleteGenre("Scary");
-        doThrow(new IllegalStateException("NOT FOUND: "+PARAMS3[0])).when(gs).deleteGenre(PARAMS3[0]);
+        doReturn(g).when(gs).deleteGenre(11L);
+        doThrow(new IllegalStateException("NOT FOUND: "+32L)).when(gs).deleteGenre(32L);
 
-        mockMvc.perform(post("/v1/genres/delete/Scary").accept(MediaType.APPLICATION_JSON_UTF8))
+        mockMvc.perform(post("/v1/genres/delete/"+11).accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$").exists())
@@ -228,7 +281,7 @@ public class GenreControllerTest {
                 .andExpect(jsonPath("$.name").value("Scary"))
                 .andExpect(jsonPath("$.remarks").value(PARAMS1[1]));
 
-        mockMvc.perform(post("/v1/genres/delete/"+PARAMS3[0]).accept(MediaType.APPLICATION_JSON_UTF8))
+        mockMvc.perform(post("/v1/genres/delete/"+32).accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().is(404));
 
         mockMvc.perform(post("/v1/genres/delete/").accept(MediaType.APPLICATION_JSON_UTF8))
@@ -239,13 +292,14 @@ public class GenreControllerTest {
     @Test
     void testCreate() throws Exception {
         CreateGenreR created = new CreateGenreR("Comedy","Funny story.");
-        final URI url = URI.create("/v1/genres/Comedy");
+        final URI url = URI.create("/v1/genres/5");
         when(gs.createGenre(eq(created))).thenReturn(url);
         mockMvc.perform(post("/v1/genres/create")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .accept(MediaType.APPLICATION_JSON_UTF8)
                 .content(gson.toJson(created)))
                 .andExpect(status().isCreated())
-                .andExpect(header().exists("Location"));
+                .andExpect(header().exists("Location"))
+                .andExpect(header().string("Location",url.toString()));
     }
 }

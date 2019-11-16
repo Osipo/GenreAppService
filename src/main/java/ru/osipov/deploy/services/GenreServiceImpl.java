@@ -34,6 +34,22 @@ public class GenreServiceImpl implements GenreService {
     @Nonnull
     @Override
     @Transactional(readOnly = true)
+    public GenreInfo getGenreById(Long id) {
+        logger.info("Get genre by id = '{}'",id);
+        Optional<Genre> o = gRepository.findByGid(id);
+        if(o.isPresent()){
+            logger.info("Genre was found. Return object.");
+            return buildModel(o.get());
+        }
+        else{
+            logger.info("Genre was not found. Throw exception...");
+            throw new IllegalStateException("Genre with "+id+" was not found.");
+        }
+    }
+
+    @Nonnull
+    @Override
+    @Transactional(readOnly = true)
     public List<GenreInfo> getAllGenres() {
         logger.info("Get all genres");
         return gRepository.findAll()
@@ -104,9 +120,30 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     @Transactional
-    public GenreInfo deleteGenre(@Nonnull String name) throws IllegalStateException{
-        logger.info("Delete genre by name = '{}",name);
-        Optional<Genre> o = gRepository.findByName(name);
+    public GenreInfo updateGenre(Long id,@Nonnull CreateGenreR request) {
+        logger.info("Updating genre...");
+        Optional<Genre> o = gRepository.findByGid(id);
+        if(o.isPresent()){
+            logger.info("Genre was found. Retrieve object for operation");
+            Genre g = o.get();
+            g.setName(request.getGname());
+            g.setRemarks(request.getRemarks());
+            logger.info("Data was read.");
+            gRepository.save(g);
+            logger.info("Genre was changed.");
+            return buildModel(g);
+        }
+        else{
+            logger.info("Genre with id '{}' was not found. Throw exception IllegalState",id);
+            throw new IllegalStateException("Genre with id "+id+"was not found.");
+        }
+    }
+
+    @Override
+    @Transactional
+    public GenreInfo deleteGenre(@Nonnull Long id) throws IllegalStateException{
+        logger.info("Delete genre by id =  '{}",id);
+        Optional<Genre> o = gRepository.findByGid(id);
         if(o.isPresent()){
             logger.info("Genre was found.");
             GenreInfo r = buildModel(o.get());
@@ -116,7 +153,7 @@ public class GenreServiceImpl implements GenreService {
         }
         else{
             logger.info("Genre was not found.");
-            throw new IllegalStateException("Genre with name"+name+"was not found.");
+            throw new IllegalStateException("Genre with id "+id+" was not found.");
         }
     }
 

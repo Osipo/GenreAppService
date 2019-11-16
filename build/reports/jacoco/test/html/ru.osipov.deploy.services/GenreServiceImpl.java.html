@@ -23,56 +23,72 @@ import static org.slf4j.LoggerFactory.getLogger;
 @Service
 public class GenreServiceImpl implements GenreService {
     private final GenreRepository gRepository;
-<span class="nc" id="L26">    private static final Logger logger = getLogger(GenreServiceImpl.class);</span>
+<span class="fc" id="L26">    private static final Logger logger = getLogger(GenreServiceImpl.class);</span>
 
     @Autowired
-<span class="nc" id="L29">    public GenreServiceImpl(GenreRepository gr){</span>
-<span class="nc" id="L30">        this.gRepository = gr;</span>
-<span class="nc" id="L31">    }</span>
+<span class="fc" id="L29">    public GenreServiceImpl(GenreRepository gr){</span>
+<span class="fc" id="L30">        this.gRepository = gr;</span>
+<span class="fc" id="L31">    }</span>
 
 
     @Nonnull
     @Override
     @Transactional(readOnly = true)
+    public GenreInfo getGenreById(Long id) {
+<span class="nc" id="L38">        logger.info(&quot;Get genre by id = '{}'&quot;,id);</span>
+<span class="nc" id="L39">        Optional&lt;Genre&gt; o = gRepository.findByGid(id);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if(o.isPresent()){</span>
+<span class="nc" id="L41">            logger.info(&quot;Genre was found. Return object.&quot;);</span>
+<span class="nc" id="L42">            return buildModel(o.get());</span>
+        }
+        else{
+<span class="nc" id="L45">            logger.info(&quot;Genre was not found. Throw exception...&quot;);</span>
+<span class="nc" id="L46">            throw new IllegalStateException(&quot;Genre with &quot;+id+&quot; was not found.&quot;);</span>
+        }
+    }
+
+    @Nonnull
+    @Override
+    @Transactional(readOnly = true)
     public List&lt;GenreInfo&gt; getAllGenres() {
-<span class="nc" id="L38">        logger.info(&quot;Get all genres&quot;);</span>
-<span class="nc" id="L39">        return gRepository.findAll()</span>
-<span class="nc" id="L40">                .stream()</span>
-<span class="nc" id="L41">                .map(this::buildModel)</span>
-<span class="nc" id="L42">                .collect(Collectors.toList());</span>
+<span class="nc" id="L54">        logger.info(&quot;Get all genres&quot;);</span>
+<span class="nc" id="L55">        return gRepository.findAll()</span>
+<span class="nc" id="L56">                .stream()</span>
+<span class="nc" id="L57">                .map(this::buildModel)</span>
+<span class="nc" id="L58">                .collect(Collectors.toList());</span>
     }
 
     @Nonnull
     @Override
     @Transactional(readOnly = true)
     public GenreInfo getByName(@Nonnull String name) {
-<span class="nc" id="L49">        logger.info(&quot;Get genre by name = '{}'&quot;,name);</span>
-<span class="nc" id="L50">        Optional&lt;GenreInfo&gt; o =  gRepository.findByName(name).map(this::buildModel);</span>
-<span class="nc" id="L51">        return o.orElseGet(() -&gt; new GenreInfo(-1l, &quot;&quot;, &quot;&quot;));</span>
+<span class="nc" id="L65">        logger.info(&quot;Get genre by name = '{}'&quot;,name);</span>
+<span class="nc" id="L66">        Optional&lt;GenreInfo&gt; o =  gRepository.findByName(name).map(this::buildModel);</span>
+<span class="nc" id="L67">        return o.orElseGet(() -&gt; new GenreInfo(-1l, &quot;&quot;, &quot;&quot;));</span>
     }
 
     @Override
     @Transactional
     public GenreInfo updateGenre(@Nonnull String oldname, @Nonnull String nname) throws IllegalStateException{
-<span class="nc" id="L57">        Optional&lt;Genre&gt; o = gRepository.findByName(oldname);</span>
-<span class="nc" id="L58">        Optional&lt;Genre&gt; o2 = gRepository.findByName(nname);</span>
+<span class="nc" id="L73">        Optional&lt;Genre&gt; o = gRepository.findByName(oldname);</span>
+<span class="nc" id="L74">        Optional&lt;Genre&gt; o2 = gRepository.findByName(nname);</span>
         Genre g;
-<span class="nc bnc" id="L60" title="All 4 branches missed.">        if(o.isPresent() &amp;&amp; o2.isEmpty()){</span>
-<span class="nc" id="L61">            logger.info(&quot;Update genre with name = '{}'&quot;,oldname);</span>
-<span class="nc" id="L62">            g = o.get();</span>
-<span class="nc" id="L63">            g.setName(nname);</span>
-<span class="nc" id="L64">            logger.info(&quot;New name = '{}'&quot;,g.getName());</span>
-<span class="nc" id="L65">            gRepository.save(g);</span>
-<span class="nc" id="L66">            return buildModel(g);</span>
+<span class="nc bnc" id="L76" title="All 4 branches missed.">        if(o.isPresent() &amp;&amp; o2.isEmpty()){</span>
+<span class="nc" id="L77">            logger.info(&quot;Update genre with name = '{}'&quot;,oldname);</span>
+<span class="nc" id="L78">            g = o.get();</span>
+<span class="nc" id="L79">            g.setName(nname);</span>
+<span class="nc" id="L80">            logger.info(&quot;New name = '{}'&quot;,g.getName());</span>
+<span class="nc" id="L81">            gRepository.save(g);</span>
+<span class="nc" id="L82">            return buildModel(g);</span>
         }
-<span class="nc bnc" id="L68" title="All 2 branches missed.">        else if(o2.isPresent()){</span>
-<span class="nc" id="L69">            logger.info(&quot;The newName of the genre = '{}' must be unique&quot;,oldname);</span>
-<span class="nc" id="L70">            logger.info(&quot;But this name '{}' is already being used by another genre&quot;,nname);</span>
-<span class="nc" id="L71">            throw new IllegalStateException(&quot;Genre with new name&quot;+nname+&quot;alredy exists&quot;);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        else if(o2.isPresent()){</span>
+<span class="nc" id="L85">            logger.info(&quot;The newName of the genre = '{}' must be unique&quot;,oldname);</span>
+<span class="nc" id="L86">            logger.info(&quot;But this name '{}' is already being used by another genre&quot;,nname);</span>
+<span class="nc" id="L87">            throw new IllegalStateException(&quot;Genre with new name&quot;+nname+&quot;alredy exists&quot;);</span>
         }
         else{
-<span class="nc" id="L74">            logger.info(&quot;not found genre with name = '{}'&quot;,oldname);</span>
-<span class="nc" id="L75">            throw new IllegalStateException(&quot;Genre with old name&quot;+oldname+&quot;does not exist.&quot;);</span>
+<span class="nc" id="L90">            logger.info(&quot;not found genre with name = '{}'&quot;,oldname);</span>
+<span class="nc" id="L91">            throw new IllegalStateException(&quot;Genre with old name&quot;+oldname+&quot;does not exist.&quot;);</span>
         }
     }
 
@@ -81,49 +97,70 @@ public class GenreServiceImpl implements GenreService {
     @Override
     @Transactional(readOnly = true)
     public List&lt;GenreInfo&gt; getByRemarks(String remarks) {
-<span class="nc" id="L84">        logger.info(&quot;Get genres by remarks = '{}'&quot;,remarks);</span>
-<span class="nc" id="L85">         return gRepository.findByRemarks(remarks)</span>
-<span class="nc" id="L86">                .stream()</span>
-<span class="nc" id="L87">                .map(this::buildModel).collect(Collectors.toList());</span>
+<span class="nc" id="L100">        logger.info(&quot;Get genres by remarks = '{}'&quot;,remarks);</span>
+<span class="nc" id="L101">         return gRepository.findByRemarks(remarks)</span>
+<span class="nc" id="L102">                .stream()</span>
+<span class="nc" id="L103">                .map(this::buildModel).collect(Collectors.toList());</span>
     }
 
     @Override
     @Nonnull
     @Transactional
     public URI createGenre(@Nonnull CreateGenreR request) {
-<span class="nc" id="L94">        logger.info(&quot;Creating genre...&quot;);</span>
-<span class="nc" id="L95">        logger.info(&quot;Vals:\n\t name = '{}'\n\t remarks = '{}'&quot;,request.getGname(),request.getRemarks());</span>
-<span class="nc" id="L96">        Genre g = new Genre()</span>
-<span class="nc" id="L97">                .setName(request.getGname())</span>
-<span class="nc" id="L98">                .setRemarks(request.getRemarks());</span>
-<span class="nc" id="L99">        g = gRepository.save(g);</span>
+<span class="nc" id="L110">        logger.info(&quot;Creating genre...&quot;);</span>
+<span class="nc" id="L111">        logger.info(&quot;Vals:\n\t name = '{}'\n\t remarks = '{}'&quot;,request.getGname(),request.getRemarks());</span>
+<span class="nc" id="L112">        Genre g = new Genre()</span>
+<span class="nc" id="L113">                .setName(request.getGname())</span>
+<span class="nc" id="L114">                .setRemarks(request.getRemarks());</span>
+<span class="nc" id="L115">        g = gRepository.save(g);</span>
         //GenreInfo ng = getById(g.getGid());
-<span class="nc" id="L101">        logger.info(&quot;Successful created.&quot;);</span>
-<span class="nc" id="L102">        return URI.create(&quot;/v1/genres/&quot;+g.getGid());</span>
+<span class="nc" id="L117">        logger.info(&quot;Successful created.&quot;);</span>
+<span class="nc" id="L118">        return URI.create(&quot;/v1/genres/&quot;+g.getGid());</span>
     }
 
     @Override
     @Transactional
-    public GenreInfo deleteGenre(@Nonnull String name) throws IllegalStateException{
-<span class="nc" id="L108">        logger.info(&quot;Delete genre by name = '{}&quot;,name);</span>
-<span class="nc" id="L109">        Optional&lt;Genre&gt; o = gRepository.findByName(name);</span>
-<span class="nc bnc" id="L110" title="All 2 branches missed.">        if(o.isPresent()){</span>
-<span class="nc" id="L111">            logger.info(&quot;Genre was found.&quot;);</span>
-<span class="nc" id="L112">            GenreInfo r = buildModel(o.get());</span>
-<span class="nc" id="L113">            gRepository.delete(o.get());</span>
-<span class="nc" id="L114">            logger.info(&quot;Deleted successful.&quot;);</span>
-<span class="nc" id="L115">            return r;</span>
+    public GenreInfo updateGenre(Long id,@Nonnull CreateGenreR request) {
+<span class="nc" id="L124">        logger.info(&quot;Updating genre...&quot;);</span>
+<span class="nc" id="L125">        Optional&lt;Genre&gt; o = gRepository.findByGid(id);</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        if(o.isPresent()){</span>
+<span class="nc" id="L127">            logger.info(&quot;Genre was found. Retrieve object for operation&quot;);</span>
+<span class="nc" id="L128">            Genre g = o.get();</span>
+<span class="nc" id="L129">            g.setName(request.getGname());</span>
+<span class="nc" id="L130">            g.setRemarks(request.getRemarks());</span>
+<span class="nc" id="L131">            logger.info(&quot;Data was read.&quot;);</span>
+<span class="nc" id="L132">            gRepository.save(g);</span>
+<span class="nc" id="L133">            logger.info(&quot;Genre was changed.&quot;);</span>
+<span class="nc" id="L134">            return buildModel(g);</span>
         }
         else{
-<span class="nc" id="L118">            logger.info(&quot;Genre was not found.&quot;);</span>
-<span class="nc" id="L119">            throw new IllegalStateException(&quot;Genre with name&quot;+name+&quot;was not found.&quot;);</span>
+<span class="nc" id="L137">            logger.info(&quot;Genre with id '{}' was not found. Throw exception IllegalState&quot;,id);</span>
+<span class="nc" id="L138">            throw new IllegalStateException(&quot;Genre with id &quot;+id+&quot;was not found.&quot;);</span>
+        }
+    }
+
+    @Override
+    @Transactional
+    public GenreInfo deleteGenre(@Nonnull Long id) throws IllegalStateException{
+<span class="nc" id="L145">        logger.info(&quot;Delete genre by id =  '{}&quot;,id);</span>
+<span class="nc" id="L146">        Optional&lt;Genre&gt; o = gRepository.findByGid(id);</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        if(o.isPresent()){</span>
+<span class="nc" id="L148">            logger.info(&quot;Genre was found.&quot;);</span>
+<span class="nc" id="L149">            GenreInfo r = buildModel(o.get());</span>
+<span class="nc" id="L150">            gRepository.delete(o.get());</span>
+<span class="nc" id="L151">            logger.info(&quot;Deleted successful.&quot;);</span>
+<span class="nc" id="L152">            return r;</span>
+        }
+        else{
+<span class="nc" id="L155">            logger.info(&quot;Genre was not found.&quot;);</span>
+<span class="nc" id="L156">            throw new IllegalStateException(&quot;Genre with id &quot;+id+&quot; was not found.&quot;);</span>
         }
     }
 
     @Nonnull
     private GenreInfo buildModel(@Nonnull Genre gi) {
-<span class="nc" id="L125">        logger.info(&quot;Genre: '{}'&quot;,gi);</span>
-<span class="nc" id="L126">        return new GenreInfo(gi.getGid(),gi.getName(), gi.getRemarks());</span>
+<span class="nc" id="L162">        logger.info(&quot;Genre: '{}'&quot;,gi);</span>
+<span class="nc" id="L163">        return new GenreInfo(gi.getGid(),gi.getName(), gi.getRemarks());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

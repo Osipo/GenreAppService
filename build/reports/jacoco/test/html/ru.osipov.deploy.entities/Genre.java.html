@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
-<span class="nc" id="L9">@Data</span>
+<span class="pc" id="L9">@Data</span>
 @Accessors(chain = true)
 @Entity
 @Table(name = &quot;genre&quot;)
@@ -17,14 +17,14 @@ public class Genre {
 <span class="nc" id="L17">	 private Long gid;</span>
 
 	 @Column(name = &quot;gname&quot;, nullable = false)
-<span class="nc" id="L20">	 private String name;</span>
+<span class="fc" id="L20">	 private String name;</span>
 
 	 @Column(name = &quot;remarks&quot;)//allows null values.
 <span class="nc" id="L23">	 private String remarks;</span>
 
 	 @Override
 	 public boolean equals(Object o) {
-<span class="nc bnc" id="L27" title="All 2 branches missed.">		 if (this == o) return true;</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">		 if (this == o) return true;</span>
 <span class="nc bnc" id="L28" title="All 4 branches missed.">	     if (o == null || getClass() != o.getClass()) return false;</span>
 <span class="nc" id="L29">	        Genre g = (Genre) o;</span>
 <span class="nc bnc" id="L30" title="All 6 branches missed.">	        return Objects.equal(gid, g.gid) &amp;&amp; Objects.equal(name, g.name) &amp;&amp;</span>

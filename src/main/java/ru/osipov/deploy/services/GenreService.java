@@ -14,6 +14,9 @@ import java.util.List;
 public interface GenreService {
 
     @Nonnull
+    GenreInfo getGenreById(Long id);
+
+    @Nonnull
     List<GenreInfo> getAllGenres();
 
     @Nonnull
@@ -26,5 +29,7 @@ public interface GenreService {
 
     URI createGenre(@Nonnull CreateGenreR request);
 
-    GenreInfo deleteGenre(@Nonnull String name);
+    GenreInfo updateGenre(Long id,@Nonnull CreateGenreR request);
+
+    GenreInfo deleteGenre(@Nonnull Long id);
 }

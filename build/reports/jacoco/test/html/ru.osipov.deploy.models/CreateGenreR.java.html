@@ -8,16 +8,16 @@ import lombok.experimental.Accessors;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-<span class="nc bnc" id="L11" title="All 22 branches missed.">@Data</span>
+<span class="pc bpc" id="L11" title="13 of 22 branches missed.">@Data</span>
 @Accessors(chain = true)
-<span class="nc" id="L13">@AllArgsConstructor</span>
-<span class="nc" id="L14">@RequiredArgsConstructor</span>
+<span class="fc" id="L13">@AllArgsConstructor</span>
+<span class="fc" id="L14">@RequiredArgsConstructor</span>
 public class CreateGenreR {
 	@NotEmpty(message = &quot;{field.not.empty}&quot;)
 	@NotBlank(message = &quot;{field.not.blank}&quot;)//on null returns true but notEmpty returns false
-<span class="nc" id="L18">	private String gname;</span>
+<span class="fc" id="L18">	private String gname;</span>
 
 
-<span class="nc" id="L21">    private String remarks;</span>
+<span class="fc" id="L21">    private String remarks;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
